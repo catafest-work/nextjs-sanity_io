@@ -1,7 +1,27 @@
+const getPosition = (options) => {
+  if(navigator.geolocation) {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject, options)
+    })
+  }
+}
+
 export default {
  name: 'post',
  type: 'document',
  title: 'Blog Post',
+ initialValue: async () => ({
+   postedAt: await getPosition()
+   .then(({coords}) => {
+    const {latitude, longitude, altitude} = coords
+    return {
+      _type: 'geopoint',
+      lat: latitude,
+      long: longitude,
+      alt: altitude || undefined
+    }
+   }).catch(() => undefined)
+ }),
  fields: [
    {
      name: 'postedAt',
