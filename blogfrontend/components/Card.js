@@ -4,11 +4,10 @@ import { urlFor } from '../lib/sanity'
 const Card = (post) => {
   return (
   <div className="card-container">
-    <h1>{post.username} aa </h1>
     <h2>
       {post.title}
     </h2>
-    {/* <p>Published on: {new Date(post.publishedAt).toDateString}</p> */}
+    {/* <p>Published on: {new Date(post.publishedAt).toDateString()}</p> */}
     {/* <img className="main-image" 
       alt={post.title + 'image'}
       src={urlFor(post.mainImage)} 
